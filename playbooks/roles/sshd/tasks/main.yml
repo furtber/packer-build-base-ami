@@ -1,0 +1,20 @@
+---
+
+- name: Set default value for PASS_MAX_DAYS
+  replace:
+    dest: /etc/login.defs
+    regexp: "^PASS_MAX_DAYS.*$"
+    replace: "PASS_MAX_DAYS   99999"
+
+- name: Set default value for PASS_MIN_DAYS
+  replace:
+    dest: /etc/login.defs
+    regexp: "^PASS_MIN_DAYS.*$"
+    replace: "PASS_MIN_DAYS   0"
+
+- name: Set the minimum number of days between password changes for ec2- user
+  command: chage --mindays -1 ec2-user
+
+- name: Set the maximum number of days during which a password is valid for ec2-user
+  command: chage --maxdays -1 ec2-user
+

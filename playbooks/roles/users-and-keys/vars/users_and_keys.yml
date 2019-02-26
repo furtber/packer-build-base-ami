@@ -1,0 +1,7 @@
+---
+
+staging:
+  forjukka:
+    email: "forjukka@amazon.com"
+    public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDmqU/0hXrRIO9ttIEldr3UZrKWp+TJahG5jJrmvu8d0DlxCe+WO3Y5R32sGONPvtxdib6ccTbMFfibCjhCdNkZZ7FlouDMabxy/Xke2w8j/xKygxnKUh9qv6mK09bGK+B+oXTHv3BmmCKLk/JxvWwJ8DHp9036AAgcPZtiGqQ7KCQSo2ibTtMy6UPuCFxdttjWKegqSQ/Ntid1Q7+GsDRt7EQ8KD41/zKZSx6aqqplV42lqxe9X4nAio+lbQxmj+SPYay5XErWxrTaHzErogFCqi7xYH4ZR2xqauyisHx2pvlvff7AcXv5+enfLX+NJvRG5CH+aaufUC+upp8nGKrV forjukka@88e9fe6a8b91.ant.amazon.com"
+

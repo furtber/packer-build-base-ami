@@ -1,0 +1,67 @@
+---
+
+- name: Set timezone to UTC
+  command: timedatectl set-timezone UTC
+
+- name: Disable firewalld since we use EC2 security groups
+  systemd:
+    name: firewalld
+    state: stopped
+    enabled: no
+
+- name: Disable iptables since we use EC2 security groups
+  systemd:
+    name: iptables-service
+    state: stopped
+    enabled: no
+
+- name: Remove /etc/issue
+  file:
+    path: /etc/issue
+    state: absent
+
+- name: Remove /etc/issue.net
+  file:
+    path: /etc/issue.net
+    state: absent
+
+- name: Customize bash prompt to show app environment
+  template:
+    src: prompt.sh.j2
+    dest: /etc/profile.d/prompt.sh
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install bind-utils package
+  yum:
+    name: bind-utils
+    state: latest
+
+- name: Install nmap-ncat package
+  yum:
+    name: nmap-ncat
+    state: latest
+
+- name: Install EPEL repo
+  yum:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    #name: epel-release
+    state: present
+
+- name: Enable rhui-REGION-rhel-server-optional repo
+  command: yum-config-manager --enable rhui-REGION-rhel-server-optional
+
+#- name: Install awscli
+#  yum:
+#    name: awscli
+#    state: latest
+
+- name: Upgrade all packages
+  yum:
+    name: '*'
+    state: latest
+
+- name: Clear bash history
+  shell: history -c
+

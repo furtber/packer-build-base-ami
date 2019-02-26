@@ -1,0 +1,21 @@
+---
+
+- name: Load users_and_keys.yml
+  include_vars: 'users_and_keys.yml'
+
+- name: Create user accounts to {{ account_alias.stdout }}
+  user:
+    name: "{{ item.key }}"
+    comment: "{ item.value.email}"
+    shell: /bin/bash
+    groups: wheel
+    append: yes
+  with_dict: "{{ account_alias.stdout }}"
+
+- name: Synchronize SSH public keys to {{ account_alias.stdout }}
+  authorized_key:
+    user: "{{ item.key }}"
+    key: "{{ item.value.public_key }}"
+    state: present
+  with_dict: "{{ account_alias.stdout }}"
+
