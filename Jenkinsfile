@@ -3,7 +3,6 @@ node {
 		//Remove later.... sho that Jenkinsfile works
 		echo "start build"
 		env.PATH = "/usr/local/bin/:${env.PATH}"
-		env.TF_LOG = "INFO" //TRACE, DEBUG, INFO, WARN or ERROR 
 		env.AWS_DEFAULT_REGION = "eu-west-1"
 
                 //AWS account print
