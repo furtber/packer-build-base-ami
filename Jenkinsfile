@@ -17,6 +17,6 @@ node {
 	}
 	stage("bake") {
 		//Run packer to build RHEL base AMI 
-		sh "packer build packerfiles/rhel_base_ami.json"
+		sh "packer build ./packerfiles/rhel_base_ami.json"
 	}
 }
