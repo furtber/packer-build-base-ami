@@ -8,12 +8,14 @@
     name: firewalld
     state: stopped
     enabled: no
+    ignore_errors: yes
 
 - name: Disable iptables since we use EC2 security groups
   systemd:
     name: iptables-service
     state: stopped
     enabled: no
+    ignore_errors: yes
 
 - name: Remove /etc/issue
   file:
@@ -25,29 +27,25 @@
     path: /etc/issue.net
     state: absent
 
-- name: Install bind-utils package
-  yum:
-    name: bind-utils
-    state: latest
-
-- name: Install nmap-ncat package
+- name: Install nmap-ncat package for network troubleshooting
   yum:
     name: nmap-ncat
     state: latest
 
 - name: Install EPEL repo
   yum:
-    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-    #name: epel-release
+    #name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    name: epel-release
     state: present
 
 - name: Enable rhui-REGION-rhel-server-optional repo
   command: yum-config-manager --enable rhui-REGION-rhel-server-optional
+  when: ansible_distribution == 'Red Hat Enterprise Linux'
 
-#- name: Install awscli
-#  yum:
-#    name: awscli
-#    state: latest
+- name: Install awscli
+  yum:
+    name: awscli
+    state: latest
 
 - name: Upgrade all packages
   yum:
