@@ -5,9 +5,6 @@ node {
 		env.PATH = "/usr/local/bin/:${env.PATH}"
 		env.AWS_DEFAULT_REGION = "eu-west-1"
 
-                //AWS account print
-                //sh "aws iam list-account-aliases --query 'AccountAliases[]' --output text"
-	
                 //Packer version print
                 sh "packer --version"
 
