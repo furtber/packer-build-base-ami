@@ -1,13 +1,5 @@
 ---
 
-- name: Check input variables
-  hosts: localhost
-  become: no
-  tasks:
-    - fail:
-        msg: "You must specify app_environment variable when running ansible-playbook."
-      when: app_environment is not defined or app_environment == ''
-
 - name: Run common tasks to prepare RHEL for usage
   hosts: all
   become: yes
