@@ -8,14 +8,14 @@
     name: firewalld
     state: stopped
     enabled: no
-    ignore_errors: yes
+  ignore_errors: yes
 
 - name: Disable iptables since we use EC2 security groups
   systemd:
     name: iptables-service
     state: stopped
     enabled: no
-    ignore_errors: yes
+  ignore_errors: yes
 
 - name: Remove /etc/issue
   file:
